@@ -1,4 +1,7 @@
 import sqlite3
+import os
+import random
+import myModule
 
 
 class Password(object):
@@ -15,6 +18,9 @@ class PasswordManager(object):
         self.filename = filename
         self.passwords = self._load()
 
+    def generate_password(length):
+        return myModule.generate_password(length, random.randrange(100))
+
     def add_password(self, password_obj=None, password=None,
                      service=None, login=None):
         if password_obj is None and not all(password, service, login):
@@ -26,4 +32,7 @@ class PasswordManager(object):
         self.passwords.append(password)
 
     def _load(self)
-        pass
+        if self.filename and os.path.is_file(self.filename):
+            pass # here will be actual loading code
+        else:
+            return []
