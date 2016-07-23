@@ -4,6 +4,9 @@ import random
 import myModule
 
 
+schema_path = './schema.sql'
+
+
 class Password(object):
 
     def __init__(self, service_name, login, password):
@@ -18,7 +21,7 @@ class PasswordManager(object):
         self.filename = filename
         self.passwords = self._load()
 
-    def generate_password(length):
+    def _generate_password(length):
         return myModule.generate_password(length, random.randrange(100))
 
     def add_password(self, password_obj=None, password=None,
