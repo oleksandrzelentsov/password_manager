@@ -24,4 +24,4 @@ class Password(Base):
     def __repr__(self):
         return "Password(password_login='{}', password='{}')".format(self.password_login, '*'*len(self.password))
 
-    service = relationship('Service', backref=backref('passwords'))
+    service = relationship('Service', backref=backref('passwords'), lazy='joined')
