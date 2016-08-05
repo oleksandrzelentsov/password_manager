@@ -14,7 +14,6 @@ class PasswordManager(object):
     def __init__(self, db_filename):
         self._engine = create_engine('sqlite:///' + db_filename)
         if not os.path.isfile(db_filename):
-            print 'created database in {}'.format(db_filename)
             self._recreate_database()
         self.Session = sessionmaker(self._engine)
         self.session = self.Session()
@@ -35,24 +34,24 @@ class PasswordManager(object):
         return self._get_all_objects_of_type(Password)
 
     def remove_password(self, pk):
-        session.query(Password).filter(Password.password_id==pk).delete()
-        session.commit()
-        session.close()
+        self.session.query(Password).filter(Password.password_id==pk).delete()
+        self.session.commit()
+        self.session.close()
 
     def remove_service(self, pk):
-        session.query(Service).filter(Service.service_id==pk).delete()
-        session.commit()
-        session.close()
+        self.session.query(Service).filter(Service.service_id==pk).delete()
+        self.session.commit()
+        self.session.close()
 
     def add_password(self, **kwargs):
         new_pass = Password(**kwargs)
-        session.add(new_pass)
-        session.commit()
-        session.close()
+        self.session.add(new_pass)
+        self.session.commit()
+        self.session.close()
 
     def add_service(self, **kwargs):
         new_serv = Service(**kwargs)
-        session.add(new_serv)
-        session.commit()
-        session.close()
+        self.session.add(new_serv)
+        self.session.commit()
+        self.session.close()
 
