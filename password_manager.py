@@ -16,9 +16,20 @@ actions = {
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', type=str, action='store', default='none', choices=actions.keys())
-    parser.add_argument('--database', type=str, default=expanduser('~/.passdb'), action='store')
-    parser.add_argument('arguments', nargs=argparse.REMAINDER)
+    parser.add_argument('action',
+                        type=str,
+                        action='store',
+                        default='none',
+                        choices=actions.keys(),
+                        help='the name of the action on the database')
+    parser.add_argument('--database',
+                        type=str,
+                        default=expanduser('~/.passdb'),
+                        action='store',
+                        help='database path')
+    parser.add_argument('arguments',
+                        nargs=argparse.REMAINDER,
+                        help='arguments for a command')
     return parser.parse_args()
 
 
