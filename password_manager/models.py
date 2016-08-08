@@ -10,7 +10,10 @@ class Service(Base):
     service_name = Column(String(64))
 
     def __repr__(self):
-        return "Service(service_name='{}')".format(self.service_name)
+        return "Service(service_id={}, service_name='{}')".format(self.service_id, self.service_name)
+
+    def __str__(self):
+        return self.__repr__()
 
 
 class Password(Base):
@@ -22,7 +25,10 @@ class Password(Base):
     password = Column(String(256))
 
     def __repr__(self):
-        return "Password(password_login='{}', password='{}')".format(self.password_login, self.password)
+        return "Password(password_id={}, password_login='{}', password='{}', password_service={})".format(self.password_id, self.password_login, self.password, str(self.password_service))
+
+    def __str__(self):
+        return self.__repr__()
 
     password_service = relationship('Service', backref=backref('passwords'), lazy='joined')
 
