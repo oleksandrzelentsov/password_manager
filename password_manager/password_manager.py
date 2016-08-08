@@ -3,10 +3,9 @@ import random
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import myModule
 
-from base import Base
-from models import *
+from password_manager.base import Base
+from password_manager.models import *
 
 
 class PasswordManager(object):
@@ -20,9 +19,6 @@ class PasswordManager(object):
 
     def _recreate_database(self):
         Base.metadata.create_all(self._engine)
-
-    def _generate_password(self, length):
-        return myModule.generate_password(length, random.randrange(100))
 
     def _get_all_objects_of_type(self, type_):
         """

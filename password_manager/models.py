@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Numeric, String, ForeignKey
 from sqlalchemy.orm import relationship, backref
-from base import Base
+from password_manager.base import Base
 
 
 class Service(Base):
@@ -17,11 +17,12 @@ class Password(Base):
     __tablename__ = 'passwords'
 
     password_id = Column(Integer, primary_key=True)
-    service_id = Column(Integer(), ForeignKey('services.service_id'))
+    password_service_id = Column(Integer(), ForeignKey('services.service_id'))
     password_login = Column(String(32))
     password = Column(String(256))
 
     def __repr__(self):
-        return "Password(password_login='{}', password='{}')".format(self.password_login, '*'*len(self.password))
+        return "Password(password_login='{}', password='{}')".format(self.password_login, self.password)
 
-    service = relationship('Service', backref=backref('passwords'), lazy='joined')
+    password_service = relationship('Service', backref=backref('passwords'), lazy='joined')
+

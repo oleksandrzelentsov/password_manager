@@ -3,7 +3,7 @@ import unittest
 import os
 import subprocess
 
-from password_manager import PasswordManager as PManager
+from password_manager.password_manager import PasswordManager as PManager
 
 
 database_count = 1
