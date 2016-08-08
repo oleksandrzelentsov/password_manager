@@ -12,6 +12,9 @@ class Service(Base):
     def __repr__(self):
         return "Service(service_name='{}')".format(self.service_name)
 
+    def __str__(self):
+        return self.__repr__()
+
 
 class Password(Base):
     __tablename__ = 'passwords'
@@ -23,6 +26,9 @@ class Password(Base):
 
     def __repr__(self):
         return "Password(password_login='{}', password='{}')".format(self.password_login, self.password)
+
+    def __str__(self):
+        return self.__repr__()
 
     password_service = relationship('Service', backref=backref('passwords'), lazy='joined')
 
