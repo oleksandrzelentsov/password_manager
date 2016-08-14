@@ -22,10 +22,10 @@ def get_args():
                         default='none',
                         choices=actions.keys(),
                         help='the name of the action on the database')
-    parser.add_argument('--database',
-                        type=str,
+    parser.add_argument('-d',
+                        '--database',
+                        nargs='?',
                         default=expanduser('~/.passdb'),
-                        action='store',
                         help='database path')
     parser.add_argument('arguments',
                         nargs=argparse.REMAINDER,
